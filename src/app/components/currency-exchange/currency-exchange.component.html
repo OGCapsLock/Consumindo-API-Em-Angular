@@ -1,0 +1,72 @@
+<div>
+  <h1>Calculadora de câmbio de moeda</h1>
+  <form>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Montante</label>
+      <input
+        type="text"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="##.00"
+        [(ngModel)]="montante"
+        name="montante"
+      />
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <select
+          class="form-select form-select-lg"
+          aria-label=".form-select-sm example"
+        >
+          <option
+            selected
+            *ngFor="let item of currencyExchange"
+            value="item.price"
+          >
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <div class="col-4">
+            <select
+              class="form-select form-select-lg"
+              aria-label=".form-select-sm example" name="price" #prices (change)="onSeleted()"
+            >
+              <option
+                selected
+                *ngFor="let item of currencyExchange"
+                [value]="item.price"
+              >
+                {{ item.name }}
+              </option>
+            </select>
+            {{price}}
+          </div>
+          <div class="col-8">
+            <div class="input-group input-group-lg">
+              <span class="input-group-text" id="basic-addon1"
+                >Valor Convertido</span
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="0"
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                [(ngModel)]="result"
+                name="result"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 my-2 mx-auto">
+        <button class="btn btn-primary" (click)="calculador()">
+          Converter
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
